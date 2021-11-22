@@ -1,5 +1,5 @@
-coslr: false
-coslrwarmup: true
+coslr: true
+coslrwarmup: false
 criterions:
   PerformanceLoss:
     def_file: ./loss/SoftmaxLoss.py
@@ -25,13 +25,15 @@ networks:
     params: {}
 shuffle: false
 training_opt:
+  backward_weight_logits: ones
+  freq_path: ./cls_freq/CIFAR-100-LT_IMBA200.json
   weight_logits: false
   backbone: resnet32
   batch_size: 512
   dataset: CIFAR100_LT
   display_step: 10
   feature_dim: 64
-  log_dir: ./logs/CIFAR100_LT/models/resnet32_softmax_imba200_3
+  log_dir: ./logs/CIFAR100_LT/models/resnet32_softmax_imba200_nwp
   num_classes: 100
   num_iterations: 13000
   num_workers: 4
